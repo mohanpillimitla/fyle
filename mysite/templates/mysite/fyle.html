@@ -1,7 +1,7 @@
 <html>
+{% load static %}
 <head>
 <title>coding exercise</title>
-{% load static %}
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <style>
@@ -213,7 +213,7 @@
   line-height: 34px;
   text-align: left;
 }
-.i200-copy {
+.i200 {
   color: #3D3C31;
   font-family: AktivGrotesk;
   font-size: 30px;
@@ -375,7 +375,7 @@
 }
 
 .oval-copy {
-  background-image: linear-gradient(221.9deg, #D5E2E9 0%, #EAEEF1 100%);
+  background-image: linear-gradient(221.9deg, #FFFFFF 0%, #EAEEF1 100%);
   border-radius: 100%;
   width: 9px;
   height: 9px;
@@ -462,27 +462,27 @@ two lines</div>
 <div class="compare-pricing-toda">Compare price today!</div>
 <div class="lorem-ipsum-is-simpl">Lorem Ipsum is simply dummy text of the printing and <a href="#" style="text-decoration: none">typesetting.</a></div>
 <div class="rectangservings">
-	<div class="serving-25">25 Serving</div>
-	<div class="serving-50">50 Serving</div>
-	<div class="serving-100">100 Serving</div>
-	<div class="serving-200">200 Serving</div>	
+	<div class="serving-25" alt='25'>25 Serving</div>
+	<div class="serving-50" alt='50'>50 Serving</div>
+	<div class="serving-100" alt='100'>100 Serving</div>
+	<div class="serving-200" alt='200'>200 Serving</div>	
 </div>
 <div class='togglebutton'>
 	<div class='annual'>Annual</div>
 	<span class='rectangletoggle'></span>
-	<span class='oval'></span>
+	<span  id='button' class='oval'></span>
 	<div class='monthly'>Monthly</div>
 </div>
 <div class="rectangle-copy-17">
 	<div class="">
 		<div class="lollipop-box">lollipop</div>
-		<div class="l100">$100  <i class="body-copy-35">per year</i></div>
+		<div class="l100"><p id='val100'> </p> </div>
 		<div class="body-copy-5 ">For 100 serving</div>
 
 	</div>
 	<div class="">
 		<div class="icecandy-box">Icecandy</div>
-		<div class="i200-copy">$200   <i class="body-copy-36">per year</i></div>
+		<div class="i200" ><p id='val200'></p>  </div>
 		<div class="body-copy-6 ">For 100 serving</div>
 
 	</div>
@@ -502,7 +502,7 @@ two lines</div>
 	</div>
 </div>
 <div class='ovals'>
-		<div class='oval-copy' style="background-color: #0099FF;"></div>
+    <div class='oval-copy' style="background-image: linear-gradient(221.9deg, #0099FF 0%, #0099FF 100%);"></div>
 		<div class='oval-copy'></div>
 		<div class='oval-copy'></div>
 		<div class='oval-copy'></div>
@@ -533,96 +533,92 @@ two lines</div>
 	$('.oval').on('click',function(){
 		$('.oval').toggleClass('ovalclick');
 
-		if($('.body-copy-35').text()==='per month')
-		{
-			$('.body-copy-35').text('per year')
-		}
-		else
-		{
-			$('.body-copy-35').text('per month')
-		}
-		if($('.body-copy-36').text()==='per month')
-		{
-			$('.body-copy-36').text('per year')
-		}
-		else
-		{
-			$('.body-copy-36').text('per month')
-		}
-		if($('.body-copy-37').text()==='per month')
-		{
-			$('.body-copy-37').text('per year')
-		}
-		else
-		{
-			$('.body-copy-37').text('per month')
-		}
+    hello()
 
+		
 
 
 	});
 
+$('.serving-25').on('click',toggle);
+$('.serving-50').on('click',toggle);
+$('.serving-100').on('click',toggle);
+$('.serving-200').on('click',toggle);
 
- $('.serving-25').on('click',hello);
+  function toggle()
+  {
 
+      var a=$(this).attr('class');
+      if(!a.includes('servingclick')){
+        $(this).toggleClass('servingclick');
+      }
 
+      
+         
+
+    
+
+      $(this).siblings().removeClass("servingclick");
+       hello()
+  }
  	function hello(){
- 	var x=$(this).attr('class')
+ 	var x=$('.servingclick').attr('alt')
+  var y=$('#button').attr('class')
+  var lollimul;
+  var icecanmul;
+  var per_year_month;
+  if(y==='oval ovalclick')
+  {
+    lollimul=1;
+    icecanmul=2;
+    $('.body-copy-37').text('per month')
+    per_year_month='per month';
 
- 	$(this).toggleClass('servingclick');
 
- 	$('.body-copy-5').text(x)
+  }
+  else
+  {
+    lollimul=0.5;
+    icecanmul=1;
+    $('.body-copy-37').text('per year')
+    per_year_month='per year';
 
- 	$('.body-copy-6').text(x)
 
- 	$(this).siblings().removeClass("servingclick");
- 	if($('.body-copy-35').text()==='per month')
- 	{
-        $('.l100').html('25 <i class="body-copy-35">per month</i>')
 
- 	}
-    else
-    {
-    	$('.l100').html('12.5 <i class="body-copy-35">per year</i>')
-    	
-    }
+  }
+  var payment_lollipop;
+  var payment_icecandy;
+  switch(x){
+    case '25':
+        payment_lollipop=25*lollimul;
+        payment_icecandy=25*icecanmul;
+    break;
+    case '50':
+        payment_lollipop=50*lollimul;
+        payment_icecandy=50*icecanmul;
+    break;
+    case '100':
+        payment_lollipop=100*lollimul;
+        payment_icecandy=100*icecanmul;
+    break;
+    case '200':
+        payment_lollipop=200*lollimul;
+        payment_icecandy=200*icecanmul;
+    break;
+  }
 
- 	if($('.body-copy-36').text()==='per month')
- 	{
-        $('.i200-copy').html('$50 <i class="body-copy-36">per month</i>')
+ 	
+  $('#val100').html('$'+payment_lollipop.toString()+'<sub class="body-copy-35">'+per_year_month+'</sub>')
+  $('#val200').html('$'+payment_icecandy.toString()+'<sub class="body-copy-35">'+per_year_month+'</sub>')
+  
+  $(".savin-copy").text('$'+(payment_icecandy-payment_lollipop).toString())
 
- 	}
- 	else
-    {
-    	$('.i200-copy').html('$25 <i class="body-copy-36">per year</i>')
-    	
-    }
+ $('.body-copy-6').html('<b> For '+x+' servings</b>')
+ $('.body-copy-5').html('<b> For '+x+' servings</b>')
 
 
  }
-$('.serving-50').on('click',function(){
 
- 	$('.serving-50').toggleClass('servingclick');
- 	$('.body-copy-5').html('per 50 servings')
- 	$('.body-copy-6').html('per 50 servings')
- 	$(this).siblings().removeClass("servingclick");
-
- });
-$('.serving-100').on('click',function(){
-
- 	$('.serving-100').toggleClass('servingclick');
- 	$('.body-copy-5').html('per 100 servings')
- 	$('.body-copy-6').html('per 100 servings')
- 	$(this).siblings().removeClass("servingclick");
- });
-$('.serving-200').on('click',function(){
-
- 	$('.serving-200').toggleClass('servingclick');
- 	$('.body-copy-5').html('per 200 servings')
- 	$('.body-copy-6').html('per 200 servings')
- 	$(this).siblings().removeClass("servingclick");
-
- });
 
 
 

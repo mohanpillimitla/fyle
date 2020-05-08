@@ -78,8 +78,8 @@
   display:grid;
   place-items:center;
   margin-top:182px;
-  margin-left:115px;
-  margin-right:87px;
+  margin-left:87px;
+  margin-right:120px;
 
 }
 .this-is-a-heading-in {
@@ -577,6 +577,15 @@ $('.serving-200').on('click',toggle);
         $('#servingid').toggleClass('savingdisplay')
 
       } 
+      if((a.includes('servingclick'))&&(!b.includes('savingdisplay'))){
+        
+        $('#servingid').toggleClass('savingdisplay')
+
+      } 
+
+
+
+
       $(this).siblings().removeClass("servingclick");
        hello()
       if(b.includes('savingdisplay')){

@@ -576,6 +576,15 @@ $('.serving-200').on('click',toggle);
         $('#servingid').toggleClass('savingdisplay')
 
       } 
+
+     
+      if((a.includes('servingclick'))&&(!b.includes('savingdisplay'))){
+        
+        $('#servingid').toggleClass('savingdisplay')
+
+      } 
+
+
       $(this).siblings().removeClass("servingclick");
        hello()
       if(b.includes('savingdisplay')){
